@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import ollama from 'ollama';
 import * as vscode from 'vscode';
 //const vscode = require('vscode');
 
@@ -28,6 +29,28 @@ export function activate(context) {
         )
 
         panel.webview.html = getWebviewContent();
+
+        panel.webview.onDidReceiveMessage(async (message: any) => {
+            if (message.command === 'chat') {
+                const userPrompt = message.text;
+                let responseText = '';
+
+                try {
+                    const streamResponse = await ollama.chat({
+                        model: 'deepseek-r1:latest',
+                        messages: [{ role: 'user', content: userPrompt }],
+                        stream: true
+                    });
+
+                    for await (const part of streamResponse) {
+                        responseText += part.message.content;
+                        panel.webview.postMessage({ command: 'chatResponse', text: responseText})
+                    }
+                } catch (err) {
+                    panel.webview.postMessage({ command: 'chatResponse', text: `Error: ${String(err)}`});
+                }
+            }
+        })
 	});
 
 	context.subscriptions.push(disposable);
@@ -56,6 +79,13 @@ function getWebviewContent(): string {
                 document.getElementById('askBtn').addEventListener('click', () => {
                     const text = document.getElementById('prompt').value;
                     vscode.postMessage({ command: 'chat', text});
+                });
+
+                window.addEventListener('message', event => {
+                    const { command, text } = event.data;
+                    if (command === 'chatResponse') {
+                        document.getElementById('response').innerText = text;
+                    }
                 });
 
             </script>
