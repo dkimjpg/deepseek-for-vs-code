@@ -10,12 +10,12 @@
     "Other"
   ],
   "activationEvents": [],
-  "main": "./extension.js",
+  "main": "./extension.ts",
   "contributes": {
     "commands": [
       {
-        "command": "deepseek-for-vs-code.helloWorld",
-        "title": "Hello World"
+        "command": "deepseek-for-vs-code.start",
+        "title": "Deepseek for VS Code"
       }
     ]
   },
@@ -24,6 +24,7 @@
     "pretest": "npm run lint",
     "test": "vscode-test"
   },
+  "type": "module",
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",

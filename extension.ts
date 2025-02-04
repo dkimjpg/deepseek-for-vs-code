@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import ollama from 'ollama';
 import * as vscode from 'vscode';
+import ollama from 'ollama';
 //const vscode = require('vscode');
 
 
@@ -94,6 +94,7 @@ function getWebviewContent(): string {
         `
 }
 
+/*
 // This method is called when your extension is deactivated
 function deactivate() {}
 
@@ -101,3 +102,4 @@ module.exports = {
 	activate,
 	deactivate
 }
+*/
