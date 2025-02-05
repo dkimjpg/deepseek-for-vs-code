@@ -11,14 +11,6 @@ import ollama from 'ollama';
 /*@param {vscode.ExtensionContext} context
  */
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	//console.log('Congratulations, your extension "deepseek-for-vs-code" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
 	const disposable = vscode.commands.registerCommand('deepseek-for-vs-code.start', () => {
         const panel = vscode.window.createWebviewPanel(
             'deepChat',
@@ -36,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
                 try {
                     const streamResponse = await ollama.chat({
-                        model: 'deepseek-r1:latest',
+                        model: 'deepseek-r1:7b',
                         messages: [{ role: 'user', content: userPrompt }],
                         stream: true
                     });
@@ -93,12 +85,6 @@ function getWebviewContent(): string {
         `
 }
 
-/*
-// This method is called when your extension is deactivated
-function deactivate() {}
 
-module.exports = {
-	activate,
-	deactivate
-}
-*/
+// This method is called when your extension is deactivated
+export function deactivate() {}
