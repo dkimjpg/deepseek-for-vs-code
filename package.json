@@ -24,6 +24,10 @@
     "pretest": "npm run lint",
     "test": "vscode-test"
   },
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/dkimjpg/deepseek-for-vs-code"
+  },
   "type": "module",
   "devDependencies": {
     "@types/mocha": "^10.0.10",
