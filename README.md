@@ -11,6 +11,6 @@ A VS Code extension written in TypeScript for secure, offline AI assistance with
 ## Requirements
 **The extension will not run if these are not installed!**
 - Requires Ollama to be installed on the user's device
-    - Can be installed here: [https://ollama.com/] (https://ollama.com/) 
+    - Can be installed here: [https://ollama.com/](https://ollama.com/) 
 - Needs deepseek-r1 model to be installed, specifically the 7b model
-    - Model can be found here: [https://ollama.com/library/deepseek-r1] (https://ollama.com/library/deepseek-r1)
+    - Model can be found here: [https://ollama.com/library/deepseek-r1](https://ollama.com/library/deepseek-r1)
